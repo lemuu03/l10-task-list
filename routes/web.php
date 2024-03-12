@@ -65,7 +65,7 @@ $tasks = [
   ),
 ];
 
-Route::get('/', function () use($tasks) { //if a function is not defined in the route, you need to use the use function to define it
+Route::get('/', function () use($tasks) { //if a function is not defined in the route, you need to use the use function to define
     return view('index', [
         'tasks' => $tasks
     ]);
