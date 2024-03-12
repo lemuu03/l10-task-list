@@ -1,9 +1,12 @@
-<div>
-    Hello I'm blade template
-</div>
+<h1>
+    The list of tasks
+</h1>
 
-@isset($name)
-    <div>
-        Then name is {{ $name }}
-    </div>
-@endisset
+
+<div>
+    @forelse ($tasks as $task)
+        <div>{{$task->title}}</div>
+    @empty
+        <div>No tasks available</div>
+    @endforelse
+</div>
