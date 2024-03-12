@@ -69,19 +69,23 @@ Route::get('/', function () use($tasks) { //if a function is not defined in the 
     return view('index', [
         'tasks' => $tasks
     ]);
-});
+})->name('tasks.index');
 
-Route::get('/hello', function () {
-    return 'Hello';
-})->name('hello');
+Route::get('/{id}', function ($id) {
+    return 'One single task';
+})->name('tasks.show');
 
-Route::get('hallo', function () {
-    return redirect()->route('hello');
-});
+// Route::get('/hello', function () {
+//     return 'Hello';
+// })->name('hello');
 
-Route::get('/greet/{name}', function ($name) {
-    return 'Hello' . $name . '!';
-});
+// Route::get('hallo', function () {
+//     return redirect()->route('hello');
+// });
+
+// Route::get('/greet/{name}', function ($name) {
+//     return 'Hello' . $name . '!';
+// });
 
 Route::fallback(function () {
     return 'Still got somewhere!';
