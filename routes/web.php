@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,14 +66,24 @@ $tasks = [
   ),
 ];
 
-Route::get('/', function () use($tasks) { //if a function is not defined in the route, you need to use the use function to define
+Route::get('/', function () {
+    return redirect()->route('tasks.index');
+});
+
+Route::get('/tasks', function () use($tasks) { //if a function is not defined in the route, you need to use the use function to define
     return view('index', [
         'tasks' => $tasks
     ]);
 })->name('tasks.index');
 
-Route::get('/{id}', function ($id) {
-    return 'One single task';
+Route::get('/tasks/{id}', function ($id) use ($tasks){
+    $task = collect($tasks)->firstWhere('id', $id);
+
+    if(!$task) {
+        abort(Response::HTTP_NOT_FOUND);
+    }
+
+    return view('show', ['task' => $task]);
 })->name('tasks.show');
 
 // Route::get('/hello', function () {
