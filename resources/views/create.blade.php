@@ -3,6 +3,7 @@
 @section('title', 'Add Task')
 
 @section('content')
+    {{$errors}}
     <form method="POST" action="{{route('tasks.store')}}">
         @csrf
         <div>
@@ -21,6 +22,8 @@
             <label for="long_description">Long Description</label>
             <textarea name="long_description" id="long_description" rows="10"></textarea>
         </div>
+
+        <input hidden name="completed" value="0">
 
         <div>
             <button type="submit">Add Task</button>
