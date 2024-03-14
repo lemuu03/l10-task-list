@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/tasks', function () { //if a function is not defined in the route, you need to use the use function to define
     return view('index', [
-        'tasks' => Task::latest()->get()
+        'tasks' => Task::latest()->paginate(10)
     ]);
 })->name('tasks.index');
 
